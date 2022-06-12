@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>{{ page.title }} | {{ site.title }}</title>
+    <meta name="description" content="Viv at the ArticuLab."/>
+    <meta name="author" content="viv2d2"/>
+    <meta name="robots" content="noindex">
+    <link rel="stylesheet" href="{{ "assets/css/main.css" | relative_url }}">
+  </head>
+  <body>
+    <header>
+      <nav class="top-nav">
+        {% if page.url == "/" %}
+        {{ site.title }}
+        {% else %}
+        <a href="{{ "/" | relative_url}}">{{ site.title }}</a>
+        {% endif %}
+        {% assign crumbs = page.url | remove: site.url | split: '/' %}
+        {% if crumbs.size != 0 %}
+        <ul class="breadcrumbs">
+          {% if crumbs.size >= 3 %}
+          <li><a href="{{ crumbs[1] | relative_url }}">{{ crumbs[1] }}</a></li>
+          {% endif %}
+          <li>{{ page.title }}</li>
+        </ul>
+        {% endif %}
+      </nav>
+    </header>
+    <main>
+      <article>
+        <h1>{{ page.title }}</h1>
+        {{ content }}
+      </article>
+      {% include aside.html %}
+    </main>
+    <footer>
+      <p>{{ site.title }}. Thanks for stopping by!</p>
+    </footer>
+  </body>
+</html>
